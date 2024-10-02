@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    pixelforce-kit (4.0.2)
+    pixelforce_kit (4.0.2)
       capistrano (> 3.0.0)
       devise
       devise_token_auth
@@ -277,7 +277,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 2.1)
-  pixelforce-kit!
+  pixelforce_kit!
   rake (~> 13.0)
   rspec (~> 3.0)
 

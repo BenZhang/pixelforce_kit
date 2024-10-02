@@ -1,13 +1,13 @@
-# Pixelforce Recipes
+# Pixelforce Kit
 
-Pixelforce Recipes implements Capistrano recipes for Unicorn & Ngnix, Sidekiq deployment.
+Pixelforce Kit implements 
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'pixelforce_recipes'
+gem 'pixelforce_kit'
 ```
 
 And then execute:
@@ -16,12 +16,12 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install pixelforce_recipes
+    $ gem install pixelforce_kit
 
 ## Usage
 add below code to deploy.rb
 ```ruby
-require 'pixelforce_recipes'
+require 'pixelforce_kit'
 ```
 
 ## Development
@@ -32,7 +32,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/pixelforce_recipes. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/pixelforce_kit. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## supervisor support
 

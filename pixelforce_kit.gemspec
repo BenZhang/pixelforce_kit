@@ -4,14 +4,14 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'pixelforce_kit/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "pixelforce-kit"
+  spec.name          = "pixelforce_kit"
   spec.version       = PixelforceKit::VERSION
   spec.authors       = ["Ben Zhang"]
   spec.email         = ["bzbnhang@gmail.com"]
 
   spec.summary       = %q{Write a short summary, because Rubygems requires one.}
   spec.description   = %q{Write a longer description or delete this line.}
-  spec.homepage      = "https://github.com/BenZhang/pixelforce-kit"
+  spec.homepage      = "https://github.com/BenZhang/pixelforce_kit"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
