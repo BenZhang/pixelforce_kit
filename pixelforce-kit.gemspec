@@ -25,5 +25,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency "elbas"
   spec.add_dependency 'devise'
   spec.add_dependency 'devise_token_auth'
+  spec.add_dependency 'rswag-api'
+  spec.add_dependency 'rswag-ui'
+  spec.add_dependency 'rswag-specs'
   spec.add_dependency(%q<capistrano>, ["> 3.0.0"])
 end
