@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'rswag/specs'
 
 def load_swagger_schemas(components_dir)
   schemas = {}
