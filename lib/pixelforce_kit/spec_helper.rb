@@ -80,3 +80,19 @@ end
 def travel(duration)
   travel_to Time.now + duration
 end
+
+class ApplicationRecord < ActiveRecord::Base
+  self.abstract_class = true
+end
+
+class User < ApplicationRecord
+end
+
+class AdminUser < ApplicationRecord
+end
+
+class ApplicationController < ActionController::Base
+  def get_search_params
+    {}
+  end
+end
