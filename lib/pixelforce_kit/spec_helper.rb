@@ -6,6 +6,10 @@ require 'rails'
 require 'active_record'
 require 'action_controller/railtie'
 require 'rspec/rails'
+require 'devise'
+require 'devise_token_auth'
+require 'kaminari'
+require 'jbuilder'
 require 'fake_app'
 require 'factory_bot'
 require 'database_cleaner/active_record'
@@ -14,13 +18,23 @@ require 'webmock/rspec'
 
 module AuthenticationHelpers
   def sign_in(user)
-    allow(controller).to receive(:current_user).and_return(user)
-    allow(controller).to receive(:authenticate_user!).and_return(true)
+    if(user.is_a?(User))
+      allow(controller).to receive(:current_user).and_return(user)
+      allow(controller).to receive(:authenticate_user!).and_return(true)
+    else
+      allow(controller).to receive(:current_admin_user).and_return(user)
+      allow(controller).to receive(:authenticate_admin_user!).and_return(true)
+    end
   end
 
   def sign_out
-    allow(controller).to receive(:current_user).and_return(nil)
-    allow(controller).to receive(:authenticate_user!).and_return(false)
+    if(user.is_a?(User))
+      allow(controller).to receive(:current_user).and_return(nil)
+      allow(controller).to receive(:authenticate_user!).and_return(false)
+    else
+      allow(controller).to receive(:current_admin_user).and_return(nil)
+      allow(controller).to receive(:authenticate_admin_user!).and_return(false)
+    end
   end
 end
 
