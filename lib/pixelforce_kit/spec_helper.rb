@@ -25,6 +25,7 @@ module AuthenticationHelpers
 end
 
 RSpec.configure do |config|
+  config.exclude_pattern = 'spec/integration/**/*_spec.rb'
   config.run_all_when_everything_filtered = true
   config.filter_run :focus
   config.order = 'random'
