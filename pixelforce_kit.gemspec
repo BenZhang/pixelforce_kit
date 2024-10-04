@@ -28,5 +28,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'devise_token_auth'
   spec.add_dependency 'kaminari'
   spec.add_dependency 'jbuilder'
+  spec.add_dependency 'ahoy_matey'
   spec.add_dependency(%q<capistrano>, ["> 3.0.0"])
 end
