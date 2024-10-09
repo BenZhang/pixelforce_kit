@@ -14,6 +14,14 @@ module Api
 
     after_action :track_request
 
+    def render_authenticate_error
+      return render json: {
+        errors: { 
+          server: [I18n.t('devise.failure.unauthenticated')]
+        }
+      }, status: 401
+    end
+
     private
 
     def create_user_devices!

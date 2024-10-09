@@ -101,10 +101,12 @@ class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
 end
 
-class User < ApplicationRecord
+class User
+  attr_accessor :id
 end
 
-class AdminUser < ApplicationRecord
+class AdminUser
+  attr_accessor :id
 end
 
 class ApplicationController < ActionController::Base

@@ -1,3 +1,5 @@
+require 'csv'
+
 module Admin
   module Api
     class AdminBaseController < ApplicationController

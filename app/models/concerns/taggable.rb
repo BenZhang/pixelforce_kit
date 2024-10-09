@@ -34,20 +34,24 @@ module Taggable
         subquery
       end.compact
 
-      if logical_operator == 'or'
-        combined_query = queries.map(&:to_sql).join(' UNION ')
-        combined_query = from("(#{combined_query}) AS #{table_name}")
+      if queries.empty?
+        all
       else
-        combined_query = queries.reduce do |combined, query|
-          if combined.nil?
-            query
-          else
-            combined.where(id: query.select(:id))
+        if logical_operator == 'or'
+          combined_query = queries.map(&:to_sql).join(' UNION ')
+          combined_query = from("(#{combined_query}) AS #{table_name}")
+        else
+          combined_query = queries.reduce do |combined, query|
+            if combined.nil?
+              query
+            else
+              combined.where(id: query.select(:id))
+            end
           end
         end
-      end
 
-      combined_query.distinct
+        combined_query.distinct
+      end
     }
   end
 end
