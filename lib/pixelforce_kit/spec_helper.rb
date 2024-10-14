@@ -17,6 +17,10 @@ require 'database_cleaner/active_record'
 require 'net/http'
 require 'webmock/rspec'
 
+load "#{File.dirname(__FILE__)}/../../db/schema.rb"
+ActiveRecord::Migration.verbose = false
+ActiveRecord::MigrationContext.new(ActiveRecord::Migrator.migrations_paths).migrate
+
 module AuthenticationHelpers
   def sign_in(user)
     if(user.is_a?(User))
@@ -101,12 +105,10 @@ class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
 end
 
-class User
-  attr_accessor :id
+class User < ActiveRecord::Base
 end
 
-class AdminUser
-  attr_accessor :id
+class AdminUser < ActiveRecord::Base
 end
 
 class ApplicationController < ActionController::Base
