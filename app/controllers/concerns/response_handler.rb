@@ -43,7 +43,7 @@ module ResponseHandler
     elsif errors.is_a?(Hash)
       response['errors'] = errors
     else
-      response['errors'] = admin_server_error ? { 'root' => { 'serverError' => { message: message } } } : { 'server' => message }
+      response['errors'] = admin_server_error ? { 'root' => { 'serverError' => { message: message } } } : { 'server' => [message] }
     end
   
     render json: response, status: status
