@@ -27,7 +27,7 @@ module ResponseHandler
 
   def render_error(status, message, errors = nil, source: nil, meta: {}, admin_server_error: false)
     response = {
-      'status' => status.to_s,
+      'status' => 'error',
       'source' => source,
       'errors' => {},
       'meta' => meta
