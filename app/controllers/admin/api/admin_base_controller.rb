@@ -37,6 +37,10 @@ module Admin
         end
       end
 
+      def render_error(status, message, errors = nil, source: nil, meta: {})
+        super(status, message, errors, source: source, meta: meta, admin_server_error: true)
+      end
+
       private
 
       def track_admin_request

@@ -25,7 +25,7 @@ module ResponseHandler
     render json: {}, status: :no_content
   end
 
-  def render_error(status, message, errors = nil, source: nil, meta: {})
+  def render_error(status, message, errors = nil, source: nil, meta: {}, admin_server_error: false)
     response = {
       'status' => status.to_s,
       'source' => source,
@@ -43,7 +43,7 @@ module ResponseHandler
     elsif errors.is_a?(Hash)
       response['errors'] = errors
     else
-      response['errors'] = { 'server' => message }
+      response['errors'] = admin_server_error ? { 'root' => { 'serverError' => { message: message } } } : { 'server' => message }
     end
   
     render json: response, status: status
