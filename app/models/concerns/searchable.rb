@@ -44,7 +44,7 @@ module Searchable
 
       if keyword_fields.any?
         conditions = keyword_fields.map { |field| "#{field} ILIKE ANY ( array[:keyword] )" }.join(' OR ')
-        results.where(conditions, keyword:)
+        results = results.where(conditions, keyword:)
       else
         results
       end
@@ -53,13 +53,9 @@ module Searchable
     def apply_attribute_filters(results, params)
       (searchable_attributes + default_attributes).each do |attr|
         value = params[attr] || params[attr.to_s]
-        next if value.blank?
 
-        results = if value.is_a?(Array)
-                    results.where(attr => value.map { |value| sanitize_sql_like(value) })
-                  else
-                    results.where(attr => value)
-                  end
+        next if value.blank?
+        results = results.where(attr => value)
       end
       results
     end
