@@ -4,7 +4,7 @@ module ExceptionHandler
   included do
     rescue_from StandardError do |e|
       notify_error(e, airbrake_notify: true)
-      render_error(500, I18n.t('errors.server_error'))
+      render_error(500, e.message)
     end
 
     rescue_from ActiveRecord::RecordNotFound do |e|
