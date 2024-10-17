@@ -43,7 +43,8 @@ module Searchable
       keyword_fields = searchable_keyword_fields
 
       if keyword_fields.any?
-        conditions = keyword_fields.map { |field| "#{field} ILIKE ANY ( array[:keyword] )" }.join(' OR ')
+        string_fields = keyword_fields.select { |field| column_for_attribute(field).type == :string }
+        conditions = string_fields.map { |field| "#{field} ILIKE ANY ( array[:keyword] )" }.join(' OR ')
         results = results.where(conditions, keyword:)
       else
         results
@@ -87,7 +88,7 @@ module Searchable
 
     def searchable_keyword_fields
       # Override this method in the including class to specify which fields should be searched for keywords
-      column_names.map(&:to_sym) & %i[name code_name id user_id transaction_id payment_subscription_id]
+      column_names.map(&:to_sym) & %i[name code_name id user_id transaction_id payment_subscription_id identifier]
     end
   end
 end
