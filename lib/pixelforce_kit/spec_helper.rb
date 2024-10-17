@@ -105,7 +105,7 @@ class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
 end
 
-class User < ActiveRecord::Base
+class User < ApplicationRecord
 end
 
 class AdminUser < ActiveRecord::Base
