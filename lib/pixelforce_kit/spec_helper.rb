@@ -21,6 +21,8 @@ load "#{File.dirname(__FILE__)}/../../db/schema.rb"
 ActiveRecord::Migration.verbose = false
 ActiveRecord::MigrationContext.new(ActiveRecord::Migrator.migrations_paths).migrate
 
+FactoryBot.definition_file_paths += [File.expand_path('../../spec/factories', __dir__)]
+
 module AuthenticationHelpers
   def sign_in(user)
     if(user.is_a?(User))
