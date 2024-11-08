@@ -4,6 +4,9 @@ class CreateTags < ActiveRecord::Migration[7.1]
       t.string :name
       t.string :code_name
       t.references :tag_category
+      t.text :body
+      t.integer :position
+      t.boolean :is_active, default: true
       t.timestamps
     end
 
