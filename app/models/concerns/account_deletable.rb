@@ -10,15 +10,17 @@ module AccountDeletable
         end
 
         user_devices.destroy_all
+        omniauths.destroy_all
         update_columns(
           deleted_at:           Time.zone.now,
           tokens:               nil,
           email:                nil,
-          uid:                  SecureRandom.uuid,
+          uid:                  nil,
           encrypted_password:   '',
           first_name:           nil,
           last_name:            nil,
-          email_before_deleted: email
+          email_before_deleted: email,
+          uid_before_deleted:   uid
         )
       end
     end
