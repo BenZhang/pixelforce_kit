@@ -4,6 +4,7 @@ module Api
     include ResponseHandler
     include RequestHeaderHandler
     include ExceptionHandler
+    include Pagination
 
     protect_from_forgery with: :null_session
 

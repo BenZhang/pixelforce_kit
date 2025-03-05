@@ -7,6 +7,7 @@ module Admin
       include ResponseHandler
       include RequestHeaderHandler
       include ExceptionHandler
+      include Pagination
 
       layout false
 
@@ -58,21 +59,7 @@ module Admin
           request.format = :json
           self.content_type = 'application/json'
         end
-      end
-
-      def pagination_headers(collection, item_name)
-        headers['Content-Range'] = "#{item_name} #{collection.offset_value}-#{collection.offset_value + collection.limit_value - 1}/#{collection.total_count}"
-        headers['Access-Control-Expose-Headers'] = 'Content-Range'
-      end
-
-      def pagination_headers_for_dropdown(item_name)
-        headers['Content-Range'] = "#{item_name} 0-999/1000"
-        headers['Access-Control-Expose-Headers'] = 'Content-Range'
-      end
-
-      def default_per_page
-        10
-      end
+      end      
 
       def keywords
         keyword = params[:filter].try(:[], :keyword)
@@ -93,17 +80,7 @@ module Admin
           end
         end
         send_data csv_data, filename: "#{table_name}-#{Date.today}.csv"
-      end
-
-      def prepare_pagination_params
-        if params[:range].present? && params[:range].is_a?(Array) && params[:range].length == 2
-          beginning_offset = params[:range][0].to_i
-          end_offset = params[:range][1].to_i
-          per_page = end_offset - beginning_offset + 1
-          params[:perPage] = per_page
-          params[:page] = (beginning_offset / per_page) + 1
-        end
-      end
+      end      
 
       def format_params
         if request.method_symbol == :get
