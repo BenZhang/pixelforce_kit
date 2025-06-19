@@ -12,6 +12,11 @@ module PixelforceKit
     
     initializer :initializer_ahoy do      
       require_relative 'initializer/ahoy'
-    end    
+    end
+
+    if defined?(FactoryBotRails)
+      config.factory_bot.definition_file_paths +=
+        [File.expand_path('../../spec/factories', __dir__)]
+    end
   end
 end

@@ -11,7 +11,7 @@ require 'devise_token_auth'
 require 'kaminari'
 require 'jbuilder'
 require 'ahoy_matey'
-require 'factory_bot'
+require 'factory_bot_rails'
 require 'fake_app'
 require 'database_cleaner/active_record'
 require 'net/http'
@@ -20,8 +20,6 @@ require 'webmock/rspec'
 load "#{File.dirname(__FILE__)}/../../db/schema.rb"
 ActiveRecord::Migration.verbose = false
 ActiveRecord::MigrationContext.new(ActiveRecord::Migrator.migrations_paths).migrate
-
-FactoryBot.definition_file_paths += [File.expand_path('../../spec/factories', __dir__)]
 
 module AuthenticationHelpers
   def sign_in(user)
@@ -67,7 +65,6 @@ RSpec.configure do |config|
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :truncation
-    FactoryBot.find_definitions
   end
 
   config.before(:each) do
